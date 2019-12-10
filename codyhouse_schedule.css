@@ -243,6 +243,9 @@ Main Components
 .cd-schedule .events {
     position: relative;
     z-index: 1;
+    float: left;
+    width: calc(100% - 60px);
+    margin-left: 60px;
 }
 
 .cd-schedule .events .top-info {
@@ -258,6 +261,11 @@ Main Components
 
 .cd-schedule .events .events-group>ul {
     position: relative;
+    height: 1150px;
+    /* reset style */
+    display: block;
+    overflow: visible;
+    padding: 0;
 }
 
 .cd-schedule .events .events-group>ul::after {
@@ -280,101 +288,66 @@ Main Components
     height: 100%;
 }
 
-
-/* I'm HERE */
-@media only screen and (min-width: 0px) {
-    .cd-schedule .events {
-        float: left;
-        width: 100%;
-    }
-
-    .cd-schedule .events .events-group {
-        width: 33%;
-        float: left;
-        border: 1px solid #EAEAEA;
-        /* reset style */
-        margin-bottom: 0;
-    }
-
-    .cd-schedule .events .events-group:not(:first-of-type) {
-        border-left-width: 0;
-    }
-
-    .cd-schedule .events .top-info {
-        /* vertically center its content */
-        display: table;
-        height: 50px;
-        border-bottom: 1px solid #EAEAEA;
-        /* reset style */
-        padding: 0;
-    }
-
-    .cd-schedule .events .top-info>span {
-        /* vertically center inside its parent */
-        display: table-cell;
-        vertical-align: middle;
-        padding: 0 .5em;
-        text-align: center;
-        /* reset style */
-        font-weight: normal;
-        margin-bottom: 0;
-    }
-
-    .cd-schedule .events .events-group>ul {
-        height: 1150px;
-        /* reset style */
-        display: block;
-        overflow: visible;
-        padding: 0;
-    }
-
-    .cd-schedule .events .events-group>ul::after {
-        clear: both;
-        content: "";
-        display: block;
-    }
-
-    .cd-schedule .events .events-group>ul::after {
-        /* reset style */
-        display: none;
-    }
-
-    .cd-schedule .events .single-event {
-        position: absolute;
-        z-index: 3;
-        /* top position and height will be set using js */
-        width: calc(100% + 2px);
-        left: -1px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), inset 0 -3px 0 rgba(0, 0, 0, 0.2);
-        /* reset style */
-        -ms-flex-negative: 1;
-        flex-shrink: 1;
-        height: auto;
-        max-width: none;
-        margin-right: 0;
-    }
-
-    .cd-schedule .events .single-event a {
-        padding: 1.2em;
-    }
-
-    .cd-schedule .events .single-event:last-of-type {
-        /* reset style */
-        margin-right: 0;
-    }
-
-    .cd-schedule .events .single-event.selected-event {
-        /* the .selected-event class is added when an user select the event */
-        visibility: hidden;
-    }
+.cd-schedule .events .events-group {
+    width: 33%;
+    float: left;
+    border: 1px solid #EAEAEA;
+    /* reset style */
+    margin-bottom: 0;
 }
 
-@media only screen and (min-width: 0px) {
-    .cd-schedule .events {
-        /* 60px is the .timeline element width */
-        width: calc(100% - 60px);
-        margin-left: 60px;
-    }
+.cd-schedule .events .events-group:not(:first-of-type) {
+    border-left-width: 0;
+}
+
+.cd-schedule .events .top-info {
+    /* vertically center its content */
+    display: table;
+    height: 50px;
+    border-bottom: 1px solid #EAEAEA;
+    /* reset style */
+    padding: 0;
+}
+
+.cd-schedule .events .top-info>span {
+    /* vertically center inside its parent */
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 .5em;
+    text-align: center;
+    /* reset style */
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+/* .cd-schedule .events .events-group>ul::after {
+    clear: both;
+    content: "";
+    display: block;
+} */
+
+.cd-schedule .events .single-event {
+    position: absolute;
+    z-index: 3;
+    /* top position and height will be set using js */
+    width: calc(100% + 2px);
+    left: -1px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), inset 0 -3px 0 rgba(0, 0, 0, 0.2);
+    /* reset style */
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    height: auto;
+    max-width: none;
+    margin-right: 0;
+}
+
+.cd-schedule .events .single-event a {
+    padding: 1.2em;
+}
+
+.cd-schedule .events .single-event.selected-event {
+    /* the .selected-event class is added when an user select the event */
+    visibility: hidden;
 }
 
 .cd-schedule.loading .events .single-event {
@@ -393,13 +366,7 @@ it is removed as soon as the single events are placed in the schedule plan (usin
 }
 
 .cd-schedule .event-name {
-    font-size: 2.4rem;
-}
-
-@media only screen and (min-width: 0px) {
-    .cd-schedule .event-name {
-        font-size: 2rem;
-    }
+    font-size: 2rem;
 }
 
 .cd-schedule .event-date {
@@ -446,6 +413,8 @@ it is removed as soon as the single events are placed in the schedule plan (usin
 .cd-schedule .single-event[data-event="event-4"]:hover {
     background: #f7bd7f;
 }
+
+/* HERE */
 
 .cd-schedule .event-modal {
     position: fixed;
