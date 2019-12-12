@@ -414,52 +414,58 @@ it is removed as soon as the single events are placed in the schedule plan (usin
     background: #f7bd7f;
 }
 
-/* HERE */
+.cd-schedule .single-event[data-event="event-5"],
+.cd-schedule [data-event="event-5"] .header-bg {
+    background: #308594;
+}
+
+.cd-schedule .single-event[data-event="event-5"]:hover {
+    background: #3f90a0;
+}
 
 .cd-schedule .event-modal {
     position: fixed;
     z-index: 3;
     top: 0;
-    right: 0;
+    /* right: 0; */
     height: 100%;
     width: 100%;
     visibility: hidden;
     /* Force Hardware acceleration */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-transform: translateX(100%);
+    /* -webkit-transform: translateZ(0);
+    transform: translateZ(0); */
+    /* -webkit-transform: translateX(100%);
     -ms-transform: translateX(100%);
-    transform: translateX(100%);
-    -webkit-transition: visibility .4s, -webkit-transform .4s;
-    transition: visibility .4s, -webkit-transform .4s;
-    transition: transform .4s, visibility .4s;
-    transition: transform .4s, visibility .4s, -webkit-transform .4s;
-    -webkit-transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+    transform: translateX(100%); */
+    /* -webkit-transition: visibility .4s, -webkit-transform .4s;
+    transition: visibility .4s, -webkit-transform .4s; */
+    /* transition: transform .4s, visibility .4s;
+    transition: transform .4s, visibility .4s, -webkit-transform .4s; */
+    /* -webkit-transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1); */
     transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
-}
-
-.cd-schedule .event-modal .header {
-    position: relative;
-    height: 70px;
-    /* vertically center its content */
-    display: table;
-    width: 100%;
+    right: auto;
+    /* -webkit-transform: translateX(0); */
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+    will-change: transform, width, height;
+    /* -webkit-transition: height .4s, width .4s, visibility .4s, -webkit-transform .4s;
+    transition: height .4s, width .4s, visibility .4s, -webkit-transform .4s;
+    transition: height .4s, width .4s, transform .4s, visibility .4s; */
+    transition: height .4s, width .4s, transform .4s, visibility .4s, -webkit-transform .4s;
 }
 
 .cd-schedule .event-modal .header .content {
     position: relative;
+    display: block;
     z-index: 3;
     /* vertically center inside its parent */
-    display: table-cell;
     vertical-align: middle;
-    padding: .6em 5%;
 }
 
 .cd-schedule .event-modal .body {
     position: relative;
-    width: 100%;
-    /* 70px is the .header height */
-    height: calc(100% - 70px);
+    height: 100%;
+    width: auto;
 }
 
 .cd-schedule .event-modal .event-info {
@@ -468,12 +474,13 @@ it is removed as soon as the single events are placed in the schedule plan (usin
     line-height: 1.4;
     height: 100%;
     overflow: hidden;
+    word-wrap: break-word;
 }
 
 .cd-schedule .event-modal .event-info>div {
     overflow: auto;
     height: 100%;
-    padding: 1.4em 5%;
+    padding: 4rem 2rem 2rem 2rem;
 }
 
 .cd-schedule .event-modal .header-bg,
@@ -484,6 +491,8 @@ it is removed as soon as the single events are placed in the schedule plan (usin
     left: 0;
     height: 100%;
     width: 100%;
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .cd-schedule .event-modal .body-bg {
@@ -542,10 +551,6 @@ it is removed as soon as the single events are placed in the schedule plan (usin
     transform: translateX(-50%) translateY(-50%) rotate(-45deg);
 }
 
-.cd-schedule .event-modal .event-date {
-    display: none;
-}
-
 .cd-schedule .event-modal.no-transition {
     -webkit-transition: none;
     transition: none;
@@ -557,99 +562,50 @@ it is removed as soon as the single events are placed in the schedule plan (usin
     transition: none;
 }
 
-@media only screen and (min-width: 0px) {
-    .cd-schedule .event-modal {
-        /* reset style */
-        right: auto;
-        width: auto;
-        height: auto;
-        -webkit-transform: translateX(0);
-        -ms-transform: translateX(0);
-        transform: translateX(0);
-        will-change: transform, width, height;
-        -webkit-transition: height .4s, width .4s, visibility .4s, -webkit-transform .4s;
-        transition: height .4s, width .4s, visibility .4s, -webkit-transform .4s;
-        transition: height .4s, width .4s, transform .4s, visibility .4s;
-        transition: height .4s, width .4s, transform .4s, visibility .4s, -webkit-transform .4s;
-        -webkit-transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
-        transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
-    }
-
-    .cd-schedule .event-modal .header {
-        position: absolute;
-        display: block;
-        top: 0;
-        left: 0;
-        height: 100%;
-    }
-
-    .cd-schedule .event-modal .header .content {
-        /* reset style */
-        display: block;
-        padding: .8em;
-    }
-
-    .cd-schedule .event-modal .event-info>div {
-        padding: 2em 3em 2em 2em;
-    }
-
-    .cd-schedule .event-modal .body {
-        height: 100%;
-        width: auto;
-    }
-
-    .cd-schedule .event-modal .header-bg,
-    .cd-schedule .event-modal .body-bg {
-        /* Force Hardware acceleration */
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        will-change: transform;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-    }
-
-    .cd-schedule .event-modal .header-bg {
-        -webkit-transition: -webkit-transform .4s;
-        transition: -webkit-transform .4s;
-        transition: transform .4s;
-        transition: transform .4s, -webkit-transform .4s;
-        -webkit-transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
-        transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
-    }
-
-    .cd-schedule .event-modal .body-bg {
-        opacity: 0;
-        -webkit-transform: none;
-        -ms-transform: none;
-        transform: none;
-    }
-
-    .cd-schedule .event-modal .event-date {
-        display: block;
-    }
-
-    .cd-schedule .event-modal .close,
-    .cd-schedule .event-modal .event-info {
-        opacity: 0;
-    }
-
-    .cd-schedule .event-modal .close {
-        width: 40px;
-        height: 40px;
-        background: transparent;
-    }
-
-    .cd-schedule .event-modal .close::after,
-    .cd-schedule .event-modal .close::before {
-        background: #222222;
-        height: 16px;
-    }
+.cd-schedule .event-modal .header {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
 }
 
-@media only screen and (min-width: 0px) {
-    .cd-schedule .event-modal .header .content {
-        padding: 1.2em;
-    }
+.cd-schedule .event-modal .header-bg {
+    transition: transform .4s, -webkit-transform .4s;
+    -webkit-transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+    transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+}
+
+.cd-schedule .event-modal .body-bg {
+    opacity: 0;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+}
+
+.cd-schedule .event-modal .event-date {
+    display: block;
+}
+
+.cd-schedule .event-modal .close,
+.cd-schedule .event-modal .event-info {
+    opacity: 0;
+}
+
+.cd-schedule .event-modal .close {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+}
+
+.cd-schedule .event-modal .close::after,
+.cd-schedule .event-modal .close::before {
+    background: #222222;
+    height: 16px;
+}
+
+.cd-schedule .event-modal .header .content {
+    padding: 1.2em;
 }
 
 .cd-schedule.modal-is-open .event-modal {
@@ -665,26 +621,23 @@ it is removed as soon as the single events are placed in the schedule plan (usin
     -webkit-overflow-scrolling: touch;
 }
 
-@media only screen and (min-width: 0px) {
+.cd-schedule.animation-completed .event-modal .close,
+.cd-schedule.content-loaded.animation-completed .event-modal .event-info {
+    /* 	the .animation-completed class is added when the modal animation is completed
+the .content-loaded class is added when the modal content has been loaded (using ajax) */
+    opacity: 1;
+    -webkit-transition: opacity .2s;
+    transition: opacity .2s;
+}
 
-    .cd-schedule.animation-completed .event-modal .close,
-    .cd-schedule.content-loaded.animation-completed .event-modal .event-info {
-        /* 	the .animation-completed class is added when the modal animation is completed
-    the .content-loaded class is added when the modal content has been loaded (using ajax) */
-        opacity: 1;
-        -webkit-transition: opacity .2s;
-        transition: opacity .2s;
-    }
-
-    .cd-schedule.modal-is-open .body-bg {
-        opacity: 1;
-        -webkit-transition: -webkit-transform .4s;
-        transition: -webkit-transform .4s;
-        transition: transform .4s;
-        transition: transform .4s, -webkit-transform .4s;
-        -webkit-transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
-        transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
-    }
+.cd-schedule.modal-is-open .body-bg {
+    opacity: 1;
+    -webkit-transition: -webkit-transform .4s;
+    transition: -webkit-transform .4s;
+    transition: transform .4s;
+    transition: transform .4s, -webkit-transform .4s;
+    -webkit-transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
+    transition-timing-function: cubic-bezier(0.5, 0, 0.1, 1);
 }
 
 .cd-schedule .cover-layer {
